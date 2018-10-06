@@ -4,23 +4,26 @@ Dockerized Prerender + Chrome Headless (chromium-browser on Alpine Linux)
 
 https://prerender.io is an open-source nodeJS based web server that servers HTML for web crawlers like Google, Twitter, Slack preview bots and so on. It is used to make SEO for single page web apps built with any framework: React, Angular, VueJS ...
 
+### Setup
 You can secure prerender in 3 ways:
 * make it public and use the whitelist/blacklist options
 * expose the port to the localhost but binding it only to local interface: `-p 127.0.0.1:3000:3000`
 * do not expose the port and put it in a docker network
 
 Docker run: https://docs.docker.com/engine/reference/run/
+
 Prerender: https://prerender.io/documentation
+
 In-memory cache plugin:  https://github.com/prerender/prerender-memory-cache
 
 ### Examples
 
-Run it with default settings, and expose the port to public:
+Run it with default settings, and expose the port to the public:
 ```bash
 docker run --detach \
     --name prerender \
     -it \
-    -p 3000:3000
+    -p 3000:3000 \
     bgadrian/docker-prerender
 ```
 
@@ -30,11 +33,16 @@ Run it with 7 days cache, 10.000 pages limit and in a docker network, the instan
 docker run --detach \
     --name prerender \
     -it \
-    --network my-net
+    --network my-net \
     -e "CACHE_MAXSIZE=10000" \
     -e "CACHE_TTL=604800" \
     bgadrian/docker-prerender
 ```
+
+To debug the app (see prerender logs):
+* run it in foreground (without --detach)
+* watch the logs `docker logs -f prerender`
+* attach your current terminal session to the prerender process `sudo docker attach prerender`
 
 ### Cache
 
