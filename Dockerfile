@@ -12,6 +12,7 @@ RUN addgroup -S prerender && adduser -S -g prerender prerender  && \
     apk add chromium --no-cache && \
     npm install prerender@${PRERENDER_VERSION}  && \
     npm install prerender-memory-cache@${PRERENDER_MEMORY_VERSION} && \
+    apk add wqy-zenhei --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing --allow-untrusted &&\
     rm -rf /var/cache/apk/*
 
 COPY server.js /app/server.js
