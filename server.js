@@ -20,6 +20,5 @@ server.use(prerender.blockResources());
 server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
 server.use(cache);
-server.use(prerender.absolute());
 
 server.start();
