@@ -9,7 +9,7 @@ WORKDIR /app
 
 RUN addgroup -S prerender && adduser -S -g prerender prerender  && \
     apk add --no-cache ca-certificates && \
-    apk add chromium=${CHROMIUM_VERSION} --no-cache --repository http://nl.alpinelinux.org/alpine/edge/community && \
+    apk add chromium --no-cache && \
     npm install prerender@${PRERENDER_VERSION}  && \
     npm install prerender-memory-cache@${PRERENDER_MEMORY_VERSION} && \
     rm -rf /var/cache/apk/*
